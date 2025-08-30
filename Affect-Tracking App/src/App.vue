@@ -1,47 +1,24 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+<template lang="pug">
+  h1 The Affecting App
+    ul
+      li Home
+      li Chart
+      li Journal
+  h2 About
+    p Welcome to the Affect Tracking App. It will help you track your mood, water, and supplement intake. You will start by tracking your mood throughout at certain times of the day for  a week on a chart.
+  h2 Chart
+    p Here you will enter your mood on a chart
+  h2 Journal
+    p In the Journal section, you will enter your mood and time at 7am, 11am, 3pm, and 7pm each day for a week
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  h1 {
+    color: orange;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
