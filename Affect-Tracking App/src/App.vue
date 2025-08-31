@@ -1,10 +1,34 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { Chart, BarController, BarElement, LinearScale, CategoryScale, Title } from 'chart.js'
 
-// Mood entries (for chart)
-const moods = ref([])
+// Register Chart.js components
+Chart.register(BarController, BarElement, LinearScale, CategoryScale, Title)
 
-// Journal entries
+// Fixed time slots
+const timeSlots = ['7 AM', '11 AM', '3 PM', '7 PM']
+
+// Mood entries for slots
+const moods = ref(
+  timeSlots.map(slot => ({ slot, v: null }))
+)
+
+const chartCanvas = ref(null)
+let chartInstance = null
+
+// Log mood into nearest slot based on current time
+function logMood(value) {
+  const hour = new Date().getHours()
+  let slotIndex = 0
+  if (hour >= 6 && hour < 9) slotIndex = 0   // 7 AM
+  else if (hour >= 9 && hour < 14) slotIndex = 1 // 11 AM
+  else if (hour >= 14 && hour < 17) slotIndex = 2 // 3 PM
+  else slotIndex = 3 // 7 PM
+
+  moods.value[slotIndex].v = value
+}
+
+// Journal
 const journals = ref([])
 const newEntry = ref('')
 
@@ -18,27 +42,76 @@ function addJournal() {
     newEntry.value = ''
   }
 }
+
+// Init chart
+onMounted(() => {
+  chartInstance = new Chart(chartCanvas.value, {
+    type: 'bar',
+    data: {
+      labels: timeSlots,
+      datasets: [{
+        label: 'Mood',
+        data: moods.value.map(m => m.v),
+        backgroundColor: moods.value.map(m => 
+          m.v === 1 ? '#22c55e' : m.v === 0 ? '#facc15' : m.v === -1 ? '#ef4444' : '#e5e7eb'
+        )
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          min: -1,
+          max: 1,
+          ticks: {
+            stepSize: 1,
+            callback: (val) =>
+              val === 1 ? 'Positive' :
+              val === 0 ? 'Neutral' :
+              val === -1 ? 'Negative' : ''
+          }
+        },
+        x: {
+          title: { display: true, text: 'Time of Day' }
+        }
+      }
+    }
+  })
+})
+
+// Update chart when moods change
+watch(moods, () => {
+  if (chartInstance) {
+    chartInstance.data.datasets[0].data = moods.value.map(m => m.v)
+    chartInstance.data.datasets[0].backgroundColor = moods.value.map(m =>
+      m.v === 1 ? '#22c55e' : m.v === 0 ? '#facc15' : m.v === -1 ? '#ef4444' : '#e5e7eb'
+    )
+    chartInstance.update()
+  }
+}, { deep: true })
 </script>
 
 <template lang="pug">
 main.app
   header.navbar
     h1 The Affect Tracker
-    ul.nav
-      li Home
-      li Chart
-      li Journal
 
   section.card
     h2 About
-    p Welcome! Track your mood, water, and supplements. 
-      | Start by logging your mood throughout the day.
+    p Welcome to the Affect Tracking App. This app helps you track your mood, water, and supplement intake. 
+      | Start by logging your mood at fixed times (7 AM, 11 AM, 3 PM, 7 PM) and reflecting in your journal. 
+      | Over time, you’ll see patterns in your affect.
 
   section.card
-    h2 Chart
-    p Mood logging chart will go here.
-    //- Placeholder chart
-    div.chart-box Mood Chart Placeholder
+    h2 Log Mood
+    .mood-buttons
+      button(@click="logMood(1)") 🙂 Positive
+      button(@click="logMood(0)") 😐 Neutral
+      button(@click="logMood(-1)") 🙁 Negative
+
+  section.card
+    h2 Mood Chart
+    canvas(ref="chartCanvas")
 
   section.card
     h2 Journal
@@ -59,7 +132,6 @@ main.app
   padding: 1rem;
 }
 h1 { color: orange; }
-.nav { display: flex; gap: 1rem; list-style: none; padding: 0; }
 .card {
   background: #fff8f0;
   padding: 1rem;
@@ -67,18 +139,30 @@ h1 { color: orange; }
   margin: 1rem 0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-.chart-box {
-  height: 150px;
-  background: #eee;
-  border-radius: 8px;
+.mood-buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 1rem;
 }
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover { opacity: 0.8; }
 textarea {
   width: 100%;
   min-height: 60px;
   margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
-.journals { list-style: none; padding: 0; }
+.journals {
+  list-style: none;
+  padding: 0;
+}
+.journals li {
+  margin-bottom: 0.5rem;
+}
 </style>
