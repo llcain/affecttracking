@@ -11,6 +11,6 @@ Built with Vue 3 (Vite), SST (serverless backend), and DynamoDB
 - Auth and data storage via AWS
 
 ## Stack
-- **Frontend**: Vue 3 + Vite => Progressive JavaScript framework used to build user interfaces (UIs) and single page applications (SPA) - Vite is a modern frontend build tool used to help devlelop, serve, and build web applications quickly and efficiently -- Pug => a concise and expressive template engine for HTML
-- **Backend**: SST (Lambda + API Gateway)
+- **Frontend**: Vue 3 + Vite => Progressive JavaScript framework used to build user interfaces (UIs) and single page applications (SPA) - Vite is a modern frontend build tool used to help devlelop, serve, and build web applications quickly and efficiently -- Pug => a concise and expressive template engine for HTML -- Tailwind CSS =>  -- Vuestic UI => 
+- **Backend**: SST (Lambda + API Gateway + DynamoDB + Amplify UI + Cognito + Node.js + Express)
 - **Database**: DynamoDB
