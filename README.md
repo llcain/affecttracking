@@ -14,3 +14,14 @@ Built with Vue 3 (Vite), SST (serverless backend), and DynamoDB
 - **Frontend**: Vue 3 + Vite => Progressive JavaScript framework used to build user interfaces (UIs) and single page applications (SPA) - Vite is a modern frontend build tool used to help devlelop, serve, and build web applications quickly and efficiently -- Pug => a concise and expressive template engine for HTML -- Tailwind CSS => Utility-first CSS framework designed for rapid building modern websites -- Vuestic UI =>Open source Vue 3 UI Framework for designed Frontend components
 - **Backend**: SST (Lambda + API Gateway + Amplify UI + Cognito + Node.js + Express)
 - **Database**: DynamoDB => Fully managed, serverless NoSQL database service offered by Amazon Web Services
+
+### Installation & Setup
+
+Clone the respository and install dependencies:
+
+1. Create affecttracker folder
+2. Cd in affecttracker folder
+3. git clone http://github.com/llcain/affecttracker.git . to clone project affecttracker folder
+4. Npm install to install node modules
+5. npm run dev to run the development server
+6. npm run buld
