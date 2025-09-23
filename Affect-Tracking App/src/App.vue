@@ -2,21 +2,19 @@
 import { ref, watch, onMounted } from 'vue'
 import { Chart, BarController, BarElement, LinearScale, CategoryScale, Title } from 'chart.js'
 
-// Register Chart.js components
+// Register Chart.js
 Chart.register(BarController, BarElement, LinearScale, CategoryScale, Title)
 
 // Fixed time slots
 const timeSlots = ['7 AM', '11 AM', '3 PM', '7 PM']
 
 // Mood entries for slots
-const moods = ref(
-  timeSlots.map(slot => ({ slot, v: null }))
-)
+const moods = ref(timeSlots.map(slot => ({ slot, v: null })))
 
 const chartCanvas = ref(null)
 let chartInstance = null
 
-// Log mood into nearest slot based on current time
+// Log mood
 function logMood(value) {
   const hour = new Date().getHours()
   let slotIndex = 0
@@ -28,7 +26,7 @@ function logMood(value) {
   moods.value[slotIndex].v = value
 }
 
-// Journal
+// Journals
 const journals = ref([])
 const newEntry = ref('')
 
@@ -52,8 +50,11 @@ onMounted(() => {
       datasets: [{
         label: 'Mood',
         data: moods.value.map(m => m.v),
-        backgroundColor: moods.value.map(m => 
-          m.v === 1 ? '#22c55e' : m.v === 0 ? '#facc15' : m.v === -1 ? '#ef4444' : '#e5e7eb'
+        backgroundColor: moods.value.map(m =>
+          m.v === 1 ? '#22c55e' :
+          m.v === 0 ? '#facc15' :
+          m.v === -1 ? '#ef4444' :
+          '#e5e7eb'
         )
       }]
     },
@@ -84,7 +85,10 @@ watch(moods, () => {
   if (chartInstance) {
     chartInstance.data.datasets[0].data = moods.value.map(m => m.v)
     chartInstance.data.datasets[0].backgroundColor = moods.value.map(m =>
-      m.v === 1 ? '#22c55e' : m.v === 0 ? '#facc15' : m.v === -1 ? '#ef4444' : '#e5e7eb'
+      m.v === 1 ? '#22c55e' :
+      m.v === 0 ? '#facc15' :
+      m.v === -1 ? '#ef4444' :
+      '#e5e7eb'
     )
     chartInstance.update()
   }
@@ -96,25 +100,26 @@ main.app
   header.navbar
     h1 The Affect Tracker
 
+  //- About Section
   section.card
     h2 About
-    p Welcome to the Affect Tracking App. This app helps you track your mood, water, and supplement intake. 
-      | Start by logging your mood at fixed times (7 AM, 11 AM, 3 PM, 7 PM) and reflecting in your journal. 
-      | Over time, you’ll see patterns in your affect.
+    p This app helps you track your daily moods and journal your reflections.
+    p Log your mood at fixed times (7 AM, 11 AM, 3 PM, 7 PM). Over time, you’ll see patterns in your affect.
 
+  //- Mood Chart Section
   section.card
-    h2 Log Mood
+    h2 Mood Chart
+    p Use the buttons to log your current mood. Your responses will update the chart below.
     .mood-buttons
       button(@click="logMood(1)") 🙂 Positive
       button(@click="logMood(0)") 😐 Neutral
       button(@click="logMood(-1)") 🙁 Negative
-
-  section.card
-    h2 Mood Chart
     canvas(ref="chartCanvas")
 
+  //- Journal Section
   section.card
     h2 Journal
+    p Reflect on how you feel throughout the day.
     form(@submit.prevent="addJournal")
       textarea(v-model="newEntry" placeholder="Write your thoughts...")
       button(type="submit") Add Entry
@@ -126,30 +131,38 @@ main.app
 
 <style scoped>
 .app {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   font-family: sans-serif;
   padding: 1rem;
 }
-h1 { color: orange; }
+h1 { 
+  color: orange; 
+  text-align: center; 
+  margin-bottom: 1.5rem;
+}
 .card {
   background: #fff8f0;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 12px;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 .mood-buttons {
   display: flex;
   gap: 1rem;
+  margin: 1rem 0;
 }
 button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
 }
-button:hover { opacity: 0.8; }
+button:hover { opacity: 0.9; }
 textarea {
   width: 100%;
   min-height: 60px;
