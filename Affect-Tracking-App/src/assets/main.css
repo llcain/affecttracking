@@ -1,3 +1,9 @@
+/*  Import Tailwind first */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Existing CSS */
 @import './base.css';
 
 #app {

@@ -5,12 +5,14 @@ import { Chart, BarController, BarElement, LinearScale, CategoryScale, Title } f
 // Register Chart.js
 Chart.register(BarController, BarElement, LinearScale, CategoryScale, Title)
 
-// Fixed time slots
+// Time slots and moods
 const timeSlots = ['7 AM', '11 AM', '3 PM', '7 PM']
 const moods = ref(timeSlots.map(slot => ({ slot, v: null })))
+
 const chartCanvas = ref(null)
 let chartInstance = null
 
+// Log mood
 function logMood(value) {
   const hour = new Date().getHours()
   let slotIndex = 0
@@ -21,19 +23,7 @@ function logMood(value) {
   moods.value[slotIndex].v = value
 }
 
-const journals = ref([])
-const newEntry = ref('')
-function addJournal() {
-  if (newEntry.value.trim()) {
-    journals.value.push({
-      id: Date.now(),
-      text: newEntry.value,
-      time: new Date().toLocaleString()
-    })
-    newEntry.value = ''
-  }
-}
-
+// Init chart
 onMounted(() => {
   chartInstance = new Chart(chartCanvas.value, {
     type: 'bar',
@@ -53,18 +43,32 @@ onMounted(() => {
     options: {
       responsive: true,
       scales: {
-        y: { min: -1, max: 1, ticks: { stepSize: 1, callback: val => val === 1 ? 'Positive' : val === 0 ? 'Neutral' : val === -1 ? 'Negative' : '' } },
+        y: {
+          min: -1,
+          max: 1,
+          ticks: {
+            stepSize: 1,
+            callback: val =>
+              val === 1 ? 'Positive' :
+              val === 0 ? 'Neutral' :
+              val === -1 ? 'Negative' : ''
+          }
+        },
         x: { title: { display: true, text: 'Time of Day' } }
       }
     }
   })
 })
 
+// Update chart when moods change
 watch(moods, () => {
   if (chartInstance) {
     chartInstance.data.datasets[0].data = moods.value.map(m => m.v)
     chartInstance.data.datasets[0].backgroundColor = moods.value.map(m =>
-      m.v === 1 ? '#22c55e' : m.v === 0 ? '#facc15' : m.v === -1 ? '#ef4444' : '#e5e7eb'
+      m.v === 1 ? '#22c55e' :
+      m.v === 0 ? '#facc15' :
+      m.v === -1 ? '#ef4444' :
+      '#e5e7eb'
     )
     chartInstance.update()
   }
@@ -72,30 +76,12 @@ watch(moods, () => {
 </script>
 
 <template lang="pug">
-main
-  // About Section
-  section.card
-    h2 About
-    p This app helps you track your daily moods and journal your reflections.
-    p Log your mood at fixed times (7 AM, 11 AM, 3 PM, 7 PM). Over time, you’ll see patterns in your affect.
-
-  // Mood Chart Section
-  section.card
-    h2 Mood Chart
-    .mood-buttons
-      button(@click="logMood(1)") 🙂 Positive
-      button(@click="logMood(0)") 😐 Neutral
-      button(@click="logMood(-1)") 🙁 Negative
-    canvas(ref="chartCanvas")
-
-  // Journal Section
-  section.card
-    h2 Journal
-    form(@submit.prevent="addJournal")
-      textarea(v-model="newEntry" placeholder="Write your thoughts...")
-      button(type="submit") Add Entry
-    ul.journals
-      li(v-for="j in journals" :key="j.id")
-        strong {{ j.time }}:
-        span {{ j.text }}
+section.bg-orange-50.p-6.rounded-2xl.shadow.max-w-3xl.mx-auto.my-8
+  h2.text-2xl.font-bold.text-orange-600.mb-4 Mood Chart
+  p.text-gray-700.mb-4 Use the buttons to log your current mood. The chart will update below.
+  div.flex.gap-4.mb-4
+    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(1)") 🙂 Positive
+    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(0)") 😐 Neutral
+    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(-1)") 🙁 Negative
+  canvas(ref="chartCanvas")
 </template>
