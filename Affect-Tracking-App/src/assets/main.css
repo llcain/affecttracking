@@ -1,12 +1,12 @@
-/*  Import Tailwind first */
+/* Import other CSS first */
+@import './base.css';
+
+/* Then Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /* Existing CSS */
-@import './base.css';
-
 #app {
   max-width: 1280px;
   margin: 0 auto;

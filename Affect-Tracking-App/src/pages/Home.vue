@@ -96,9 +96,10 @@ main.max-w-4xl.mx-auto.p-6.space-y-8
     h2.text-2xl.font-bold.text-orange-600.mb-2 Mood Chart
     p.text-gray-700 Use the buttons to log your current mood. Your responses will update the chart below.
     .flex.gap-4.my-4
-      button.px-4.py-2.bg-green-500.text-white.rounded-lg.hover\\:opacity-90(@click="logMood(1)") 🙂 Positive
-      button.px-4.py-2.bg-yellow-400.text-white.rounded-lg.hover\\:opacity-90(@click="logMood(0)") 😐 Neutral
-      button.px-4.py-2.bg-red-500.text-white.rounded-lg.hover\\:opacity-90(@click="logMood(-1)") 🙁 Negative
+      button(@click="logMood(1)" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:opacity-90") 🙂 Positive
+      button(@click="logMood(0)" class="px-4 py-2 bg-yellow-400 text-white rounded-lg hover:opacity-90") 😐 Neutral
+      button(@click="logMood(-1)" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:opacity-90") 🙁 Negative
+
     canvas.w-full.h-64(ref="chartCanvas")
 
   //- Journal Section
@@ -107,7 +108,8 @@ main.max-w-4xl.mx-auto.p-6.space-y-8
     p.text-gray-700 Reflect on how you feel throughout the day.
     form.space-y-2(@submit.prevent="addJournal")
       textarea.w-full.p-2.border.rounded-lg(v-model="newEntry" placeholder="Write your thoughts...")
-      button.px-4.py-2.bg-orange-500.text-white.rounded-lg.hover\\:opacity-90(type="submit") Add Entry
+      button(type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:opacity-90") Add Entry
+
     ul.mt-4.space-y-2
       li.p-2.bg-white.rounded-lg.shadow(v-for="j in journals" :key="j.id")
         strong.text-gray-600 {{ j.time }}:

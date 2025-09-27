@@ -80,8 +80,9 @@ section.bg-orange-50.p-6.rounded-2xl.shadow.max-w-3xl.mx-auto.my-8
   h2.text-2xl.font-bold.text-orange-600.mb-4 Mood Chart
   p.text-gray-700.mb-4 Use the buttons to log your current mood. The chart will update below.
   div.flex.gap-4.mb-4
-    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(1)") 🙂 Positive
-    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(0)") 😐 Neutral
-    button.px-4.py-2.bg-orange-500.text-white.font-bold.rounded-lg.hover:opacity-90(@click="logMood(-1)") 🙁 Negative
+    button(@click="logMood(1)" class="px-4 py-2 bg-orange-500 text-white font-bold rounded-lg hover:opacity-90") 🙂 Positive
+    button(@click="logMood(0)" class="px-4 py-2 bg-orange-500 text-white font-bold rounded-lg hover:opacity-90") 😐 Neutral
+    button(@click="logMood(-1)" class="px-4 py-2 bg-orange-500 text-white font-bold rounded-lg hover:opacity-90") 🙁 Negative
+
   canvas(ref="chartCanvas")
 </template>
