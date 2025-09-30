@@ -8,6 +8,7 @@
         <router-link to="/chart">Mood Chart</router-link>
         <router-link to="/food">Food Chart</router-link>
         <router-link to="/water">Water Chart</router-link>
+        <router-link to="/supplement">Supplement Chart</router-link>
         <router-link to="/journal">Journal</router-link>
       </nav>
     </header>

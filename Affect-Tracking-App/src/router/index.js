@@ -6,6 +6,7 @@ import About from '../pages/About.vue'
 import MoodChart from '../pages/MoodChart.vue'
 import Food from '../pages/Food.vue'
 import Water from '../pages/Water.vue'
+import Supplement from '../pages/Supplement.vue'
 import Journal from '../pages/Journal.vue'
 
 // Define the routes
@@ -15,6 +16,7 @@ const routes = [
   { path: '/chart', component: MoodChart },
   { path: '/food', component: Food },
   { path: '/water', component: Water },
+  { path: '/supplement', component: Supplement },
   { path: '/journal', component: Journal }
 ]
 
