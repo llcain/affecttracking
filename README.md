@@ -19,9 +19,9 @@ Built with Vue 3 (Vite), SST (serverless backend), and DynamoDB
 
 Clone the respository and install dependencies:
 
-1. Create affecttracker folder
-2. Cd in affecttracker folder
-3. git clone http://github.com/llcain/affecttracker.git . to clone project affecttracker folder
+1. Create affecttracking folder
+2. Cd in affecttracking folder
+3. git clone http://github.com/llcain/affecttracking.git . to clone project in affecttracking folder
 4. Npm install to install node modules
 5. npm run dev to run the development server
 6. npm run buld
