@@ -11,5 +11,7 @@ export default $config({
 
     // app's resources
 
-    async run() {}
+    async run() {
+        
+    }
 });
