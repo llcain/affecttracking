@@ -12,6 +12,8 @@ export default $config({
     // app's resources
 
     async run() {
-        
+        new aws.Function("GetMood", {
+            handler: "functions/getMood.handler"
+        });
     }
 });
