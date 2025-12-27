@@ -1,3 +1,5 @@
+
+
 <template lang="pug">
   main.app
     header.navbar
@@ -10,10 +12,11 @@
           <router-link to="/water">Water</router-link>
           <router-link to="/supplement">Supplement</router-link>
           <router-link to="/journal">Journal</router-link>
+        <MoodChart.vue />
       
     
 
-    <!-- Pages render here -->
+    // Pages render here
     <router-view />
   
 </template>
@@ -49,3 +52,8 @@ nav a.router-link-exact-active {
   text-decoration: underline;
 }
 </style>
+
+<script setup>
+
+import MoodChart from "./pages/MoodChart.vue"
+</script>

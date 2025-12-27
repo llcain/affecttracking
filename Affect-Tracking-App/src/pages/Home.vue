@@ -85,13 +85,13 @@ watch(moods, () => {
 
 <template lang="pug">
 main.max-w-4xl.mx-auto.p-6.space-y-8
-  <!-- About Section -->
+  // About Section
   section.bg-orange-50.p-6.rounded-2xl.shadow
     h2.text-2xl.font-bold.text-orange-600.mb-2 About
     p.text-gray-700 This app helps you track your daily moods and journal your reflections.
     p.text-gray-700 Log your mood at fixed times (7 AM, 11 AM, 3 PM, 7 PM). Over time, you’ll see patterns in your affect.
 
-  <!-- Mood Chart Section -->
+  // Mood Chart Section
   section.bg-orange-50.p-6.rounded-2xl.shadow
     h2.text-2xl.font-bold.text-orange-600.mb-2 Mood Chart
     p.text-gray-700 Use the buttons to log your current mood. Your responses will update the chart below.
@@ -102,7 +102,7 @@ main.max-w-4xl.mx-auto.p-6.space-y-8
 
     canvas.w-full.h-64(ref="chartCanvas")
 
-   <! -- Journal Section -- >
+  // Journal 
   section.bg-orange-50.p-6.rounded-2xl.shadow
     h2.text-2xl.font-bold.text-orange-600.mb-2 Journal
     p.text-gray-700 Reflect on how you feel throughout the day.
