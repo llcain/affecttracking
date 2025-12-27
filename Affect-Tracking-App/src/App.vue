@@ -1,21 +1,21 @@
-<template>
-  <main class="app">
-    <header class="navbar">
-      <h1>The Affect Tracker</h1>
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/chart">Mood Chart</router-link>
-        <router-link to="/food">Food Chart</router-link>
-        <router-link to="/water">Water Chart</router-link>
-        <router-link to="/supplement">Supplement Chart</router-link>
-        <router-link to="/journal">Journal</router-link>
-      </nav>
-    </header>
+<template lang="pug">
+  main.app
+    header.navbar
+      h1 The Affect Tracker
+        nav
+          <router-link to="/">Home</router-link>
+          <router-link to="/about">About</router-link>
+          <router-link to="/chart">Mood</router-link>
+          <router-link to="/food">Food</router-link>
+          <router-link to="/water">Water</router-link>
+          <router-link to="/supplement">Supplement</router-link>
+          <router-link to="/journal">Journal</router-link>
+      
+    
 
     <!-- Pages render here -->
     <router-view />
-  </main>
+  
 </template>
 
 <style scoped>
@@ -26,7 +26,7 @@
   padding: 1rem;
 }
 h1 { 
-  color: orange; 
+  color: red; 
   text-align: center; 
   margin-bottom: 1.5rem;
 }
