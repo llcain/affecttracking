@@ -1,8 +1,11 @@
 <script setup>
-import {ref} from 'vue'
+import {ref} from 'vue';
 
-const username = ref('')
-const moods = ref(['happy', 'nuetral', 'sad'])
+const username = ref('');
+const moods = ref(['happy', 'nuetral', 'sad']);
+
+
+
 </script>
 
 <template lang="pug">
@@ -19,9 +22,10 @@ ul.legend
       type="text"
       v-model="username"
       placeholder="Enter your name"
-    div.container
-      li#list
     )
+    button Add User
+    div.container
+      div#list
 </template>
 
 <style scoped>
