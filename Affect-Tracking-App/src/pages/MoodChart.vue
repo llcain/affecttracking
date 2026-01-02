@@ -17,7 +17,7 @@ ul.legend
   li Sad 😒😒😒
 
   div.max-w-submit
-    label.block.text-sm.font-medium.text-gray-700.mb-1 User Name
+    label.block.text-sm.font-medium.text-gray-700.mb-1 User Name:
     input(
       type="text"
       v-model="username"
@@ -29,11 +29,15 @@ ul.legend
 </template>
 
 <style scoped>
-ul.legend {
-  backgroundColor: blue;
-}
 
 ul.legend li {
+  background-color: blue;
+  color: white;
   list-style: none;
+  width: 150px;
+}
+
+ul.legend li:nth-child(3) {
+  margin-bottom: 20px;
 }
 </style>
