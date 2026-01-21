@@ -9,17 +9,21 @@ const moods = ref(['happy', 'nuetral', 'sad']);
 <template lang="pug">
 // create legend
 
+h1 Legend
 ul.legend
   li Happy 😀😀😀
   li Neutral 😑😑😑
   li Sad 😒😒😒
 
-  h1 Mood
   input(
     type="text"
     placeholder="Enter Your Name"
     )
   button Add User
+
+  div#mood-container
+    h2 Moods
+    div.moodList
 </template>
 
 <style scoped>
