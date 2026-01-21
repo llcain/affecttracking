@@ -4,7 +4,11 @@ import {ref} from 'vue';
 const username = ref('');
 const moods = ref(['happy', 'nuetral', 'sad']);
 
-
+handler = () => {
+  let value = "";
+  document.getElementById('list').value = "";
+  
+}
 
 </script>
 
@@ -22,8 +26,9 @@ ul.legend
       type="text"
       v-model="username"
       placeholder="Enter your name"
+      value=""
     )
-    button Add User
+    button(@click="handler") Add User
     div.container
       div#list
 </template>
