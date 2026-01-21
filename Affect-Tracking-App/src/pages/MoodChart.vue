@@ -4,12 +4,6 @@ import {ref} from 'vue';
 const username = ref('');
 const moods = ref(['happy', 'nuetral', 'sad']);
 
-handler = () => {
-  let value = "";
-  document.getElementById('list').value = "";
-  
-}
-
 </script>
 
 <template lang="pug">
@@ -20,17 +14,12 @@ ul.legend
   li Neutral 😑😑😑
   li Sad 😒😒😒
 
-  div.max-w-submit
-    label.block.text-sm.font-medium.text-gray-700.mb-1 User Name:
-    input(
-      type="text"
-      v-model="username"
-      placeholder="Enter your name"
-      value=""
+  h1 Mood
+  input(
+    type="text"
+    placeholder="Enter Your Name"
     )
-    button(@click="handler") Add User
-    div.container
-      div#list
+  button Add User
 </template>
 
 <style scoped>

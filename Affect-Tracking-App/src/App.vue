@@ -12,7 +12,7 @@
           <router-link to="/water">Water</router-link>
           <router-link to="/supplement">Supplement</router-link>
           <router-link to="/journal">Journal</router-link>
-        <MoodChart.vue />
+         
       
     
 
