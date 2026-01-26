@@ -36,8 +36,7 @@ div#mood-container
 
   div#moodList
     ul
-      li(v-for="(name, index) in names" :key="index")
-        {{ name }}
+      li(v-for="(name, index) in names" :key="index") {{ name }}
 
 </template>
 
