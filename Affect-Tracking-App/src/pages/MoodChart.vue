@@ -2,14 +2,11 @@
 import {ref} from 'vue';
 
 const userName = ref('');
-const moods = ref(['happy', 'nuetral', 'sad']);
+const moods = ref(['😀😀😀']);
 const names = ref([]);
 
-const addName = () => {
-  if (!userName.value.trim()) return
-
-  names.value.push(userName.value)
-  userName.value = ''
+const addMood = () => {
+  return moods;
 }
 
 
@@ -17,6 +14,7 @@ const addName = () => {
 
 <template lang="pug">
 // create legend
+
 h1 Legend
 
 ul.legend
@@ -24,19 +22,10 @@ ul.legend
   li Neutral 😑😑😑
   li Sad 😒😒😒
 
-input(
-  type="text"
-  v-model="userName"
-  placeholder="Enter Your Name"
-)
-button(@click="addName") Add User
 
-div#mood-container
-  h2 Moods
+button(@click="addMood") Mood
+p {{moods}}
 
-  div#moodList
-    ul
-      li(v-for="(name, index) in names" :key="index") {{ name }}
 
 </template>
 
