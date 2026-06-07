@@ -1,29 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// Import the pages
-import Home from '../pages/Home.vue'
-import About from '../pages/About.vue'
-import MoodChart from '../pages/MoodChart.vue'
-import Food from '../pages/Food.vue'
-import Water from '../pages/Water.vue'
-import Supplement from '../pages/Supplement.vue'
-import Journal from '../pages/Journal.vue'
+import DashboardView from '../pages/DashboardView.vue'
+import AboutView from '../pages/AboutView.vue'
 
-// Define the routes
-const routes = [
-  { path: '/', component: Home },   // Home page shows all sections
-  { path: '/about', component: About },
-  { path: '/chart', component: MoodChart },
-  { path: '/food', component: Food },
-  { path: '/water', component: Water },
-  { path: '/supplement', component: Supplement },
-  { path: '/journal', component: Journal }
-]
-
-// Create the router instance
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: [
+    {
+      path: '/',
+      name: 'dashboard',
+      component: DashboardView
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: AboutView
+    }
+  ]
 })
 
 export default router

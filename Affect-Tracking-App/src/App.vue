@@ -1,59 +1,63 @@
-
-
 <template lang="pug">
-  main.app
-    header.navbar
-      h1 The Affect Tracker
-        nav
-          <router-link to="/">Home</router-link>
-          <router-link to="/about">About</router-link>
-          <router-link to="/chart">Mood</router-link>
-          <router-link to="/food">Food</router-link>
-          <router-link to="/water">Water</router-link>
-          <router-link to="/supplement">Supplement</router-link>
-          <router-link to="/journal">Journal</router-link>
-         
-      
-    
+main.app
 
-    // Pages render here
-    <router-view />
-  
+  header.navbar
+
+    h1 Affect Tracking Dashboard
+
+    nav
+      router-link(to="/") Dashboard
+      router-link(to="/chart") Mood
+      router-link(to="/food") Food
+      router-link(to="/water") Water
+      router-link(to="/supplement") Supplements
+      router-link(to="/journal") Journal
+      router-link(to="/about") About
+
+  router-view
 </template>
+
+<script setup>
+// No imports needed here.
+// Pages are loaded through Vue Router.
+</script>
 
 <style scoped>
 .app {
-  max-width: 700px;
-  margin: 0 auto;
-  font-family: sans-serif;
-  padding: 1rem;
+  min-height: 100vh;
+  background: #f8fafc;
 }
-h1 { 
-  color: red; 
-  text-align: center; 
-  margin-bottom: 1.5rem;
-}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+
+  padding: 1rem 2rem;
+
+  background: white;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+h1 {
+  margin: 0;
+  color: #7c3aed;
+  font-size: 2rem;
+}
+
 nav {
   display: flex;
   gap: 1rem;
 }
+
 nav a {
-  color: #ff9800;
-  font-weight: bold;
   text-decoration: none;
+  color: #475569;
+  font-weight: 600;
 }
+
 nav a.router-link-exact-active {
-  text-decoration: underline;
+  color: #7c3aed;
 }
 </style>
-
-<script setup>
-
-import MoodChart from "./pages/MoodChart.vue"
-</script>
