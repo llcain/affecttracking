@@ -1,72 +1,82 @@
 <template lang="pug">
-main(class="min-h-screen bg-slate-300 w-full")
+main(class="min-h-screen bg-slate-300")
 
-  div(class="w-full px-6 py-8")
+  div(class="w-full px-8 py-8")
 
-    // Header
+    // Welcome Banner
     section(
-      class="bg-purple-700 text-white rounded-2xl shadow-lg p-8 mb-8"
+      class="bg-gradient-to-r from-purple-700 to-indigo-700 text-white rounded-3xl shadow-xl p-8 mb-8"
     )
 
-      h1(class="text-5xl font-bold")
-        | Affect Tracking Dashboard
+      h2(class="text-4xl font-bold")
+        | Welcome Back 👋
 
-      p(class="mt-3 text-lg opacity-90")
-        | Track moods, nutrition, hydration, supplements, and wellness habits.
+      p(class="mt-3 text-lg")
+        | Track your moods, nutrition, hydration, supplements, and daily wellness habits.
+
+    // Dashboard Summary Cards
+    section(class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8")
+
+      div(class="bg-white rounded-3xl shadow-lg p-6")
+        h3(class="text-lg font-semibold text-slate-500") Today's Mood
+        p(class="text-4xl mt-3") 😀
+
+      div(class="bg-white rounded-3xl shadow-lg p-6")
+        h3(class="text-lg font-semibold text-slate-500") Water Intake
+        p(class="text-4xl mt-3") 💧 6 / 8
+
+      div(class="bg-white rounded-3xl shadow-lg p-6")
+        h3(class="text-lg font-semibold text-slate-500") Meals Logged
+        p(class="text-4xl mt-3") 🍎 3
+
+      div(class="bg-white rounded-3xl shadow-lg p-6")
+        h3(class="text-lg font-semibold text-slate-500") Supplements
+        p(class="text-4xl mt-3") 💊 4
 
     // Dashboard Grid
-    section(class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8")
+    section(class="grid grid-cols-1 xl:grid-cols-3 gap-6")
 
       // Mood Tracker
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      div(class="bg-white rounded-3xl shadow-xl p-6")
 
-        h2(class="text-2xl font-bold mb-4")
+        h2(class="text-2xl font-bold mb-6")
           | Mood Tracker
 
         input(
           type="text"
           placeholder="Enter your name"
-          class="w-full border rounded-lg p-3 mb-4"
+          class="w-full border rounded-xl p-3 mb-4"
         )
 
-        select(class="w-full border rounded-lg p-3 mb-4")
-          option(value="7am") 7am
-          option(value="11am") 11am
-          option(value="3pm") 3pm
-          option(value="7pm") 7pm
+        select(class="w-full border rounded-xl p-3 mb-4")
+          option 7am
+          option 11am
+          option 3pm
+          option 7pm
 
-        select(class="w-full border rounded-lg p-3 mb-4")
-          option(value="happy") Happy 😀
-          option(value="neutral") Neutral 😑
-          option(value="sad") Sad 😒
+        select(class="w-full border rounded-xl p-3 mb-6")
+          option Happy 😀
+          option Neutral 😑
+          option Sad 😒
 
         button(
-          class="bg-purple-600 text-white px-5 py-3 rounded-lg hover:bg-purple-700"
+          class="w-full bg-purple-700 text-white rounded-xl py-3 hover:bg-purple-800"
         )
           | Record Mood
 
-      // Mood Legend
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      // Mood Chart
+      div(class="bg-white rounded-3xl shadow-xl p-6 xl:col-span-2")
 
         h2(class="text-2xl font-bold mb-4")
-          | Mood Legend
+          | Mood Trends
 
-        ul(class="space-y-4")
+        div(class="h-80 rounded-xl bg-slate-100 flex items-center justify-center")
 
-          li(class="flex items-center gap-4")
-            span(class="text-3xl") 😀😀😀
-            span(class="font-medium") Happy
-
-          li(class="flex items-center gap-4")
-            span(class="text-3xl") 😑😑😑
-            span(class="font-medium") Neutral
-
-          li(class="flex items-center gap-4")
-            span(class="text-3xl") 😒😒😒
-            span(class="font-medium") Sad
+          p(class="text-slate-500")
+            | MoodChart.vue will be displayed here
 
       // Food Tracker
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      div(class="bg-white rounded-3xl shadow-xl p-6")
 
         h2(class="text-2xl font-bold mb-4")
           | Food Intake
@@ -74,38 +84,39 @@ main(class="min-h-screen bg-slate-300 w-full")
         input(
           type="text"
           placeholder="Breakfast"
-          class="w-full border rounded-lg p-3 mb-3"
+          class="w-full border rounded-xl p-3 mb-3"
         )
 
         input(
           type="text"
           placeholder="Lunch"
-          class="w-full border rounded-lg p-3 mb-3"
+          class="w-full border rounded-xl p-3 mb-3"
         )
 
         input(
           type="text"
           placeholder="Dinner"
-          class="w-full border rounded-lg p-3"
+          class="w-full border rounded-xl p-3"
         )
 
       // Water Tracker
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      div(class="bg-white rounded-3xl shadow-xl p-6")
 
         h2(class="text-2xl font-bold mb-4")
           | Water Intake
 
-        p(class="text-lg font-medium mb-4")
-          | 6 / 8 Glasses
+        p(class="text-lg mb-4")
+          | 6 of 8 glasses
 
-        div(class="w-full bg-slate-200 rounded-full h-5")
+        div(class="bg-slate-200 rounded-full h-5")
+
           div(
-            class="bg-blue-500 h-5 rounded-full"
+            class="bg-blue-500 rounded-full h-5"
             style="width:75%"
           )
 
       // Supplements
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      div(class="bg-white rounded-3xl shadow-xl p-6")
 
         h2(class="text-2xl font-bold mb-4")
           | Supplements
@@ -127,40 +138,51 @@ main(class="min-h-screen bg-slate-300 w-full")
           | Magnesium
 
       // Journal
-      div(class="bg-white rounded-2xl shadow-lg p-6 min-h-[300px]")
+      div(class="bg-white rounded-3xl shadow-xl p-6 xl:col-span-2")
 
         h2(class="text-2xl font-bold mb-4")
-          | Journal
+          | Daily Journal
 
         textarea(
           rows="8"
-          placeholder="How are you feeling today?"
-          class="w-full border rounded-lg p-4"
+          placeholder="Write about your day..."
+          class="w-full border rounded-xl p-4"
         )
 
     // Daily Insights
-    section(
-      class="bg-white rounded-2xl shadow-lg p-6 mt-8"
-    )
+    section(class="bg-white rounded-3xl shadow-xl p-6 mt-8")
 
-      h2(class="text-2xl font-bold mb-4")
+      h2(class="text-2xl font-bold mb-6")
         | Daily Insights
 
-      ul(class="space-y-3")
+      div(class="grid md:grid-cols-2 gap-4")
 
-        li(class="bg-purple-50 p-4 rounded-lg")
-          | Highest mood recorded at 7pm
+        div(class="bg-purple-50 rounded-xl p-4")
+          h3(class="font-semibold mb-2")
+            | Mood Trend
+          p Mood improved throughout the day.
 
-        li(class="bg-purple-50 p-4 rounded-lg")
-          | Water intake goal nearly reached
+        div(class="bg-blue-50 rounded-xl p-4")
+          h3(class="font-semibold mb-2")
+            | Hydration
+          p Water goal is 75% complete.
 
-        li(class="bg-purple-50 p-4 rounded-lg")
-          | Mood improved throughout the day
+        div(class="bg-green-50 rounded-xl p-4")
+          h3(class="font-semibold mb-2")
+            | Nutrition
+          p Three meals have been recorded today.
 
-        li(class="bg-purple-50 p-4 rounded-lg")
-          | Supplements recorded successfully
+        div(class="bg-yellow-50 rounded-xl p-4")
+          h3(class="font-semibold mb-2")
+            | Supplements
+          p All scheduled supplements have been logged.
 </template>
 
 <script setup>
-// Dashboard page
+// Later you can import:
+//
+// import MoodChart from '../components/MoodChart.vue'
+// import { useMoodStore } from '../stores/moodStore'
+//
+// Replace the placeholder with <MoodChart /> when ready.
 </script>
