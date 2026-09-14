@@ -25,10 +25,10 @@ main.app
 <style scoped>
 .app {
   min-height: 100vh;
-  background: #f8fafc;
-}
-
-.navbar {
+  background-color: #DBEAFE;
+  }
+  
+  .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
