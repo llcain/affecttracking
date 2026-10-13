@@ -7,12 +7,12 @@ main.app
 
     nav
       router-link(to="/") Dashboard
+      router-link(to="/about") About
       router-link(to="/chart") Mood
       router-link(to="/food") Food
       router-link(to="/water") Water
       router-link(to="/supplement") Supplements
       router-link(to="/journal") Journal
-      router-link(to="/about") About
 
   router-view
 </template>
